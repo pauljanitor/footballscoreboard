@@ -19,4 +19,7 @@ For coding exercise purposes (keeping it simple) any additional match informatio
 time, cards, team members, scoring players were intentionally omitted.  
 
 Assumption #6  
-For coding exercise purposes (keeping it simple) there are no additional objects introduced (daos, dtos, entities, dbitems).
+For coding exercise purposes (keeping it simple) there are no additional objects introduced (daos, dtos, entities, dbitems).  
+
+Assumption #7   
+No LinkedList in the response. Collection type List keeps the order of inserting which means that if properly inserted the result will keep the order.

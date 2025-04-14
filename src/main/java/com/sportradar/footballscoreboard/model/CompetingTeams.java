@@ -10,6 +10,6 @@ public class CompetingTeams {
     private final Team awayTeam;
 
     static CompetingTeams of(Team homeTeam, Team awayTeam) {
-        return null;
+        return new CompetingTeams(homeTeam, awayTeam);
     }
 }

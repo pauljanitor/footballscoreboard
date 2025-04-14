@@ -10,6 +10,6 @@ public class NewScore {
     private final int awayScore;
 
     public static NewScore of(int homeScore, int awayScore) {
-        return null;
+        return new NewScore(homeScore, awayScore);
     }
 }

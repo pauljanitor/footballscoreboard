@@ -11,6 +11,13 @@ public class Summary {
     private final List<MatchSummary> matchSummaries;
 
     static Summary of(List<Match> matches) {
-        return null;
+        return new Summary(prepareList(matches));
+    }
+
+    private static List<MatchSummary> prepareList(List<Match> matches) {
+        return matches
+                .stream()
+                .map(match -> MatchSummary.of(match.getCompetingTeams(), match.getScore()))
+                .toList();
     }
 }

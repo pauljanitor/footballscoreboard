@@ -11,6 +11,6 @@ public class TeamSummaryDetails {
     private final TeamSummaryScore score;
 
     static TeamSummaryDetails of(Team team, TeamSummaryScore score) {
-        return null;
+        return new TeamSummaryDetails(team, score);
     }
 }

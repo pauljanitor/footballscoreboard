@@ -9,10 +9,11 @@ public class Score {
     private final int homeTeamScore;
     private final int awayTeamScore;
 
-    public void updateScore(NewScore newScore) {
+    public Score updateScore(NewScore newScore) {
+        return new Score(newScore.getHomeScore(), newScore.getAwayScore());
     }
 
     static Score initialScore() {
-        return null;
+        return new Score(0, 0);
     }
 }

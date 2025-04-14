@@ -21,8 +21,8 @@ public class MatchSummaryTest {
 
         // then
         assertThat(result.getHomeTeamSummary().getTeam()).isEqualTo(homeTeam);
-        assertThat(result.getHomeTeamSummary().getScore()).isEqualTo(score.getHomeTeamScore());
-        assertThat(result.getAwayTeamSummary()).isEqualTo(awayTeam);
-        assertThat(result.getAwayTeamSummary().getScore()).isEqualTo(score.getAwayTeamScore());
+        assertThat(result.getHomeTeamSummary().getScore().getScore()).isEqualTo(score.getHomeTeamScore());
+        assertThat(result.getAwayTeamSummary().getTeam()).isEqualTo(awayTeam);
+        assertThat(result.getAwayTeamSummary().getScore().getScore()).isEqualTo(score.getAwayTeamScore());
     }
 }

@@ -24,10 +24,10 @@ public class ScoreTest {
         NewScore newScore = NewScore.of(1, 2);
 
         // when
-        score.updateScore(newScore);
+        score = score.updateScore(newScore);
 
         // then
         assertThat(score.getHomeTeamScore()).isEqualTo(1);
-        assertThat(score.getAwayTeamScore()).isEqualTo(3);
+        assertThat(score.getAwayTeamScore()).isEqualTo(2);
     }
 }

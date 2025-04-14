@@ -10,9 +10,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DurationInfoTest {
 
     @Test
-    public void of_shouldCreateDurationInfoWithOnlyFinishedAtNull() {
+    public void initialDuration_shouldCreateDurationInfoWithOnlyFinishedAtNull() {
         // when
-        DurationInfo result = DurationInfo.of();
+        DurationInfo result = DurationInfo.initialDuration();
 
         // then
         assertThat(result.getStartedAt()).isInstanceOf(Instant.class);
@@ -22,14 +22,14 @@ public class DurationInfoTest {
     @Test
     public void updateFinishTime_shouldUpdateDurationInfoWithFinishTime() {
         // given
-        DurationInfo durationInfo = DurationInfo.of();
+        DurationInfo durationInfo = DurationInfo.initialDuration();
         Instant finishTime = Instant.now();
 
         // when
-        durationInfo.updateFinishTime(finishTime);
+        DurationInfo result = durationInfo.updateFinishTime(finishTime);
 
         // then
-        assertThat(durationInfo.getStartedAt()).isInstanceOf(Instant.class);
-        assertThat(durationInfo.getFinishedAt()).isEqualTo(finishTime);
+        assertThat(result.getStartedAt()).isEqualTo(durationInfo.getStartedAt());
+        assertThat(result.getFinishedAt()).isEqualTo(finishTime);
     }
 }

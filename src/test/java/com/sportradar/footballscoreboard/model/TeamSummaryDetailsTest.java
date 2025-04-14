@@ -17,6 +17,6 @@ public class TeamSummaryDetailsTest {
 
         // then
         assertThat(result.getTeam()).isEqualTo(team);
-        assertThat(result.getScore()).isEqualTo(3);
+        assertThat(result.getScore().getScore()).isEqualTo(3);
     }
 }

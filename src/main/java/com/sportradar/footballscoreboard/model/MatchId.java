@@ -11,6 +11,6 @@ public class MatchId {
     private final UUID id;
 
     public static MatchId generateMatchId() {
-        return null;
+        return new MatchId(UUID.randomUUID());
     }
 }

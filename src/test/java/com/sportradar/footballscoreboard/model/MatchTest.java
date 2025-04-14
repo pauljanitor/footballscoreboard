@@ -45,7 +45,7 @@ public class MatchTest {
         assertThat(match.getDurationInfo().getFinishedAt()).isNull();
         assertThat(match.getCreatedAt()).isBefore(Instant.now());
         // when
-        match.finishMatch();
+        match = match.finishMatch();
 
         // then
         assertThat(match.getMatchId().getId()).isInstanceOf(UUID.class);
@@ -74,7 +74,7 @@ public class MatchTest {
         assertThat(match.getCreatedAt()).isBefore(Instant.now());
 
         // when
-        match.updateScore(NewScore.of(1, 2));
+        match = match.updateScore(NewScore.of(1, 2));
 
         // then
         assertThat(match.getCompetingTeams().getHomeTeam()).isEqualTo(homeTeam);

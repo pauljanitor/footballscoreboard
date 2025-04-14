@@ -9,6 +9,6 @@ public class TeamSummaryScore {
     private final int score;
 
     public static TeamSummaryScore of(int score) {
-        return null;
+        return new TeamSummaryScore(score);
     }
 }

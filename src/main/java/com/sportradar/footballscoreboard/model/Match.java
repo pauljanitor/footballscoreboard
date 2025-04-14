@@ -15,12 +15,18 @@ public class Match {
     private final Instant createdAt;
 
     public static Match newMatch(Team hometeam, Team awayTeam) {
-        return null;
+        return new Match(MatchId.generateMatchId(),
+                CompetingTeams.of(hometeam, awayTeam),
+                Score.initialScore(),
+                DurationInfo.initialDuration(),
+                Instant.now());
     }
 
-    public void finishMatch() {
+    public Match finishMatch() {
+        return new Match(matchId, competingTeams, score, durationInfo.updateFinishTime(Instant.now()), createdAt);
     }
 
-    public void updateScore(NewScore newScore) {
+    public Match updateScore(NewScore newScore) {
+        return new Match(matchId, competingTeams, new Score(newScore.getHomeScore(), newScore.getAwayScore()), durationInfo, createdAt);
     }
 }

@@ -23,19 +23,6 @@ public class InMemoryScoreBoard implements ScoreBoard {
         return saveMatch(homeTeam, awayTeam);
     }
 
-    private void validateInProgress(Team homeTeam, Team awayTeam) {
-        Set<Team> inProgress = scoreBoard.values().stream()
-                .flatMap(match -> Stream.of(
-                        match.getCompetingTeams().getHomeTeam(),
-                        match.getCompetingTeams().getAwayTeam()
-                ))
-                .collect(Collectors.toSet());
-
-        if (inProgress.contains(homeTeam) || inProgress.contains(awayTeam)) {
-            throw new IllegalArgumentException("One team already in match. Cannot start new match");
-        }
-    }
-
     @Override
     public void finishMatch(MatchId matchId) {
         if (isInvalidMatchId(matchId)) {
@@ -56,9 +43,6 @@ public class InMemoryScoreBoard implements ScoreBoard {
             throw new IllegalArgumentException("MatchId cannot be null");
         }
         validateNewScore(newScore);
-        if (isInvalidMatchId(matchId)) {
-            throw new IllegalArgumentException("MatchId cannot be null");
-        }
         Match match = scoreBoard.get(matchId);
         if (Objects.nonNull(match)) {
             Match updated = match.updateScore(newScore);
@@ -70,7 +54,26 @@ public class InMemoryScoreBoard implements ScoreBoard {
 
     @Override
     public Summary getSummary() {
-        return Summary.of(scoreBoard.values().stream().sorted(Comparator.comparingInt(Match::getTotalScore).reversed().thenComparing(Match::getStartTime).reversed()).toList());
+        return Summary.of(scoreBoard.values().stream()
+                .sorted(
+                        Comparator.comparingInt(Match::getTotalScore).reversed()
+                                .thenComparing(Comparator.comparing(Match::getStartTime).reversed())
+                )
+                .toList());
+
+    }
+
+    private void validateInProgress(Team homeTeam, Team awayTeam) {
+        Set<Team> inProgress = scoreBoard.values().stream()
+                .flatMap(match -> Stream.of(
+                        match.getCompetingTeams().getHomeTeam(),
+                        match.getCompetingTeams().getAwayTeam()
+                ))
+                .collect(Collectors.toSet());
+
+        if (inProgress.contains(homeTeam) || inProgress.contains(awayTeam)) {
+            throw new IllegalArgumentException("One team already in match. Cannot start new match");
+        }
     }
 
     private void validateNewScore(NewScore newScore) {

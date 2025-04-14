@@ -243,6 +243,30 @@ abstract class AbstractScoreBoardTest {
     }
 
     @Test
+    public void updateScore_shouldThrowIllegalArgumentExceptionWhenMatchIdNull() {
+        // given
+        ScoreBoard scoreBoard = createScoreBoard();
+        MatchId matchId = new MatchId(null);
+        NewScore newScore = NewScore.of(1, 4);
+
+        // when - then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> scoreBoard.updateScore(matchId, newScore));
+    }
+
+    @Test
+    public void updateScore_shouldThrowIllegalArgumentExceptionWhenMatchIdUuidNull() {
+        // given
+        ScoreBoard scoreBoard = createScoreBoard();
+        MatchId matchId = null;
+        NewScore newScore = NewScore.of(1, 4);
+
+        // when - then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> scoreBoard.updateScore(matchId, newScore));
+    }
+
+    @Test
     public void updateScore_shouldThrowIllegalArgumentExceptionWhenMatchNotFound() {
         // given
         ScoreBoard scoreBoard = createScoreBoard();
@@ -309,33 +333,33 @@ abstract class AbstractScoreBoardTest {
         // Uruguay 6 - Italy 6
         MatchSummary uruIta = matchSummaries.get(0);
         assertThat(uruIta.getHomeTeamSummary().getTeam().getCountry().getName()).isEqualTo("Uruguay");
-        assertThat(uruIta.getHomeTeamSummary().getScore()).isEqualTo(6);
+        assertThat(uruIta.getHomeTeamSummary().getScore().getScore()).isEqualTo(6);
         assertThat(uruIta.getAwayTeamSummary().getTeam().getCountry().getName()).isEqualTo("Italy");
-        assertThat(uruIta.getAwayTeamSummary().getScore()).isEqualTo(6);
+        assertThat(uruIta.getAwayTeamSummary().getScore().getScore()).isEqualTo(6);
         // Spain 10 - Brazil 2
         MatchSummary spaBra = matchSummaries.get(1);
         assertThat(spaBra.getHomeTeamSummary().getTeam().getCountry().getName()).isEqualTo("Spain");
-        assertThat(spaBra.getHomeTeamSummary().getScore()).isEqualTo(10);
+        assertThat(spaBra.getHomeTeamSummary().getScore().getScore()).isEqualTo(10);
         assertThat(spaBra.getAwayTeamSummary().getTeam().getCountry().getName()).isEqualTo("Brazil");
-        assertThat(spaBra.getAwayTeamSummary().getScore()).isEqualTo(2);
+        assertThat(spaBra.getAwayTeamSummary().getScore().getScore()).isEqualTo(2);
         // Mexico 0 - Canada 5
         MatchSummary mexCan = matchSummaries.get(2);
         assertThat(mexCan.getHomeTeamSummary().getTeam().getCountry().getName()).isEqualTo("Mexico");
-        assertThat(mexCan.getHomeTeamSummary().getScore()).isEqualTo(0);
+        assertThat(mexCan.getHomeTeamSummary().getScore().getScore()).isEqualTo(0);
         assertThat(mexCan.getAwayTeamSummary().getTeam().getCountry().getName()).isEqualTo("Canada");
-        assertThat(mexCan.getAwayTeamSummary().getScore()).isEqualTo(5);
+        assertThat(mexCan.getAwayTeamSummary().getScore().getScore()).isEqualTo(5);
         // Argentina 3 - Australia 1
         MatchSummary argAus = matchSummaries.get(3);
         assertThat(argAus.getHomeTeamSummary().getTeam().getCountry().getName()).isEqualTo("Argentina");
-        assertThat(argAus.getHomeTeamSummary().getScore()).isEqualTo(3);
+        assertThat(argAus.getHomeTeamSummary().getScore().getScore()).isEqualTo(3);
         assertThat(argAus.getAwayTeamSummary().getTeam().getCountry().getName()).isEqualTo("Australia");
-        assertThat(argAus.getAwayTeamSummary().getScore()).isEqualTo(1);
+        assertThat(argAus.getAwayTeamSummary().getScore().getScore()).isEqualTo(1);
         // Germany 2 - France 2
         MatchSummary gerFra = matchSummaries.get(4);
         assertThat(gerFra.getHomeTeamSummary().getTeam().getCountry().getName()).isEqualTo("Germany");
-        assertThat(gerFra.getHomeTeamSummary().getScore()).isEqualTo(2);
+        assertThat(gerFra.getHomeTeamSummary().getScore().getScore()).isEqualTo(2);
         assertThat(gerFra.getAwayTeamSummary().getTeam().getCountry().getName()).isEqualTo("France");
-        assertThat(gerFra.getAwayTeamSummary().getScore()).isEqualTo(2);
+        assertThat(gerFra.getAwayTeamSummary().getScore().getScore()).isEqualTo(2);
     }
 
     private void prepareCodingExerciseInput(ScoreBoard scoreBoard) {

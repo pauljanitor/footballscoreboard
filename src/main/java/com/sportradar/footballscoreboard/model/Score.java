@@ -13,6 +13,10 @@ public class Score {
         return new Score(newScore.getHomeScore(), newScore.getAwayScore());
     }
 
+    public int getTotalScore() {
+        return homeTeamScore + awayTeamScore;
+    }
+
     static Score initialScore() {
         return new Score(0, 0);
     }

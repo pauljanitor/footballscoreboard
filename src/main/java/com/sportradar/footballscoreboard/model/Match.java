@@ -31,7 +31,7 @@ public class Match {
     }
 
     public int getTotalScore() {
-        return score.getHomeTeamScore() + score.getAwayTeamScore();
+        return score.getTotalScore();
     }
 
     public Instant getStartTime() {

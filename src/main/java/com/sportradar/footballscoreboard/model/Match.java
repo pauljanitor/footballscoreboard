@@ -29,4 +29,12 @@ public class Match {
     public Match updateScore(NewScore newScore) {
         return new Match(matchId, competingTeams, new Score(newScore.getHomeScore(), newScore.getAwayScore()), durationInfo, createdAt);
     }
+
+    public int getTotalScore() {
+        return score.getHomeTeamScore() + score.getAwayTeamScore();
+    }
+
+    public Instant getStartTime() {
+        return durationInfo.getStartedAt();
+    }
 }

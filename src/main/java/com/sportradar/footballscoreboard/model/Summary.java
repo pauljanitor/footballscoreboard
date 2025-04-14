@@ -10,7 +10,7 @@ import java.util.List;
 public class Summary {
     private final List<MatchSummary> matchSummaries;
 
-    static Summary of(List<Match> matches) {
+    public static Summary of(List<Match> matches) {
         return new Summary(prepareList(matches));
     }
 

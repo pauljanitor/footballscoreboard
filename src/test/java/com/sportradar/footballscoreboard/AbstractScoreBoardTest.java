@@ -27,9 +27,9 @@ abstract class AbstractScoreBoardTest {
         MatchSummary found = scoreBoard.getSummary().getMatchSummaries().getFirst();
 
         assertThat(found.getHomeTeamSummary().getTeam()).isEqualTo(homeTeam);
-        assertThat(found.getHomeTeamSummary().getScore()).isEqualTo(0);
-        assertThat(found.getHomeTeamSummary().getTeam()).isEqualTo(awayTeam);
-        assertThat(found.getHomeTeamSummary().getScore()).isEqualTo(0);
+        assertThat(found.getHomeTeamSummary().getScore().getScore()).isEqualTo(0);
+        assertThat(found.getAwayTeamSummary().getTeam()).isEqualTo(awayTeam);
+        assertThat(found.getAwayTeamSummary().getScore().getScore()).isEqualTo(0);
     }
 
     @Test
@@ -237,9 +237,9 @@ abstract class AbstractScoreBoardTest {
         MatchSummary found = scoreBoard.getSummary().getMatchSummaries().getFirst();
 
         assertThat(found.getHomeTeamSummary().getTeam()).isEqualTo(homeTeam);
-        assertThat(found.getHomeTeamSummary().getScore()).isEqualTo(1);
-        assertThat(found.getHomeTeamSummary().getTeam()).isEqualTo(awayTeam);
-        assertThat(found.getHomeTeamSummary().getScore()).isEqualTo(4);
+        assertThat(found.getHomeTeamSummary().getScore().getScore()).isEqualTo(1);
+        assertThat(found.getAwayTeamSummary().getTeam()).isEqualTo(awayTeam);
+        assertThat(found.getAwayTeamSummary().getScore().getScore()).isEqualTo(4);
     }
 
     @Test
